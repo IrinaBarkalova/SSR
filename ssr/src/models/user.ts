@@ -17,6 +17,7 @@ export type StudentProfileModel = {
   studentID: number;
   year: number;
 };
+
 export const StudentProfileInitialModel = {
   avatarUrl: "",
   department: "",

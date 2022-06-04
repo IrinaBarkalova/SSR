@@ -1,15 +1,17 @@
 import { ApiResp } from "@utils/apiTypes";
 import axios from "axios";
 
-export const getProfile = async (
+export const getWorks = async (
   token: string,
+  student_id: number,
   role: string
 ): Promise<ApiResp> => {
   try {
     const response = await axios({
       method: "get",
-      url: `http://localhost:8080/api/${role}/profile`,
+      url: `http://localhost:8080/api/${role}/work`,
       headers: { Authorization: `Bearer ${token}` },
+      params: { student_id: student_id },
     });
     return {
       success: true,

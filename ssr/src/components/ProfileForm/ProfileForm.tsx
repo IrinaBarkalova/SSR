@@ -1,17 +1,18 @@
 import React from "react";
 
 import "./ProfileFormStyles.css";
+import { useReposContext } from "@App/App";
 import StudentProfile from "@components/ProfileForm/StudentProfile";
 import SupervisorProfile from "@components/ProfileForm/SupervisorProfile";
-import { useParams } from "react-router-dom";
 
 const ProfileForm: React.FC = () => {
-  const { role } = useParams<{ role: string }>();
+  const repoContext = useReposContext();
+
   return (
     <div className="ProfileForm__full">
-      <h2>Привет!</h2>
-      {role === "student" && <StudentProfile role={role} />}
-      {role === "supervisor" && <SupervisorProfile role={role} />}
+      <h2>Привет)</h2>
+      {repoContext.role === "student" && <StudentProfile />}
+      {repoContext.role === "supervisor" && <SupervisorProfile />}
     </div>
   );
 };

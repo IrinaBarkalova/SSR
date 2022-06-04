@@ -1,18 +1,11 @@
 import React, { createContext, useContext } from "react";
 
+import FirstPage from "@components/FirstPage";
 import LoginForm from "@components/LoginForm";
 import ProfileForm from "@components/ProfileForm";
-import {
-  StudentProfileInitialModel,
-  StudentProfileModel,
-  SupervisorProfileInitialModel,
-  SupervisorProfileModel,
-} from "@models/user";
 import { getToken } from "@store/LoginStore/LoginStore";
-import {
-  getStudentProfile,
-  getSupervisorProfile,
-} from "@store/ProfileStore/ProfileStore";
+import { getProfile } from "@store/ProfileStore/ProfileStore";
+import { getWorks } from "@store/WorksStore/WorksStore";
 import { ApiResp } from "@utils/apiTypes";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 interface ContextType {
@@ -23,10 +16,16 @@ interface ContextType {
   token: string;
   setToken: React.Dispatch<React.SetStateAction<string>>;
   role: string;
+  id: number;
+  setId: React.Dispatch<React.SetStateAction<number>>;
   setRole: React.Dispatch<React.SetStateAction<string>>;
   getToken: (login: string, password: string) => Promise<ApiResp>;
-  getStudentProfile: (token: string) => Promise<ApiResp>;
-  getSupervisorProfile: (token: string) => Promise<ApiResp>;
+  getProfile: (token: string, role: string) => Promise<ApiResp>;
+  getWorks: (
+    token: string,
+    student_id: number,
+    role: string
+  ) => Promise<ApiResp>;
 }
 const ReposContext = createContext({} as ContextType);
 export const useReposContext = () => useContext(ReposContext);
@@ -37,8 +36,7 @@ const App: React.FC = () => {
   const [password, setPswd] = React.useState("");
   const [token, setToken] = React.useState("");
   const [role, setRole] = React.useState("");
-
-  //TODO запехать что-то ненужное в LoginForm
+  const [id, setId] = React.useState(0);
   return (
     <Provider
       value={{
@@ -50,17 +48,23 @@ const App: React.FC = () => {
         setToken,
         role,
         setRole,
+        id,
+        setId,
         getToken,
-        getStudentProfile,
-        getSupervisorProfile,
+        getProfile,
+        getWorks,
       }}
     >
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
+            <FirstPage>
+              <ProfileForm />
+            </FirstPage>
+          </Route>
+          <Route exact path="/login">
             <LoginForm />
           </Route>
-          <Route path="/profile/:role/" component={ProfileForm} />
         </Switch>
       </BrowserRouter>
     </Provider>
