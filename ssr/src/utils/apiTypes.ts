@@ -1,6 +1,9 @@
-import { UserLoginResp } from "@models/user";
+import { SupervisorProfileModel, StudentProfileModel, UserLoginRespModel } from "@models/user";
 
-export type ApiResp<SuccessData = UserLoginResp, ErrorData = any> =
+export type ApiResp<
+  SuccessData = UserLoginRespModel | StudentProfileModel | SupervisorProfileModel,
+  ErrorData = any
+> =
   | {
       success: true;
       data: SuccessData;

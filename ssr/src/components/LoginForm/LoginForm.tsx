@@ -2,6 +2,7 @@ import React from "react";
 
 import "./LoginFormStyles.css";
 import { useReposContext } from "@App/App";
+import { Link } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
   const repoContext = useReposContext();
@@ -21,11 +22,9 @@ const LoginForm: React.FC = () => {
     repoContext
       .getToken(repoContext.login, repoContext.password)
       .then((result) => {
-        // eslint-disable-next-line no-console
-        console.log(result.data, "RES");
+        repoContext.setToken(result.data.token);
+        repoContext.setRole(result.data.role);
       });
-    // eslint-disable-next-line no-console
-    // console.log(repoContext.login, "login");
   }, [repoContext]);
   return (
     <div className="LoginForm">
@@ -38,7 +37,9 @@ const LoginForm: React.FC = () => {
         onChange={onChangePswd}
       />
       <br />
-      <button onClick={handleClick}>Submit</button>
+      <Link to={`/profile/${repoContext.role}`}>
+        <button onClick={handleClick}>Submit</button>
+      </Link>
     </div>
   );
 };
