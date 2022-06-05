@@ -24,7 +24,13 @@ const FirstPage: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
           {repoContext.token && (
             <Menu>
               <Menu.Item key="two" icon={<AppstoreOutlined />}>
-                Navig2
+                <Link to={`/profile`}>Мой профиль</Link>
+              </Menu.Item>
+              <Menu.Item key="three" icon={<AppstoreOutlined />}>
+                <Link to={`/works`}>Мои работы</Link>
+              </Menu.Item>
+              <Menu.Item key="four" icon={<AppstoreOutlined />}>
+                <Link to={`/bids`}>Мои заявки</Link>
               </Menu.Item>
             </Menu>
           )}

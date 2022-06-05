@@ -37,7 +37,7 @@ const LoginForm: React.FC = () => {
         onChange={onChangePswd}
       />
       <br />
-      <Link to={`/`}>
+      <Link to={`/profile`}>
         <button onClick={handleClick}>Submit</button>
       </Link>
     </div>

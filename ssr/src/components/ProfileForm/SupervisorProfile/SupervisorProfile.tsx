@@ -1,28 +1,17 @@
 import React from "react";
 
-import { useReposContext } from "@App/App";
-import {
-  SupervisorProfileInitialModel,
-  SupervisorProfileModel,
-} from "@models/user";
-
-const SupervisorProfile: React.FC = () => {
-  const repoContext = useReposContext();
-
-  const [supervisor, setSupervisor] = React.useState<SupervisorProfileModel>(
-    SupervisorProfileInitialModel
-  );
-  React.useEffect(() => {
-    repoContext.getProfile(repoContext.token, repoContext.role).then((r) => {
-      setSupervisor(r.data);
-      repoContext.setId(r.data.supervisorID);
-    });
-  }, [repoContext]);
+import { ProfileModel } from "@models/user";
+type Props = {
+  supervisor: ProfileModel;
+};
+const SupervisorProfile: React.FC<Props> = ({ supervisor }: Props) => {
   return (
     <div>
-      <h3>
-        Вы {repoContext.role} №{supervisor.supervisorID}
-      </h3>
+      <h2>
+        {supervisor.firstName} {supervisor.lastName}
+      </h2>
+      <h3>Почта: {supervisor.email}</h3>
+      <h3>Кафедра: {supervisor.department}</h3>
     </div>
   );
 };

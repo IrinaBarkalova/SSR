@@ -1,7 +1,7 @@
 import { ApiResp } from "@utils/apiTypes";
 import axios from "axios";
 
-export const getWorks = async (
+export const getBids = async (
   token: string,
   id: number,
   role: string
@@ -11,14 +11,14 @@ export const getWorks = async (
     if (role === "student") {
       response = await axios({
         method: "get",
-        url: `http://localhost:8080/api/${role}/work`,
+        url: `http://localhost:8080/api/${role}/bid`,
         headers: { Authorization: `Bearer ${token}` },
         params: { student_id: id },
       });
     } else {
       response = await axios({
         method: "get",
-        url: `http://localhost:8080/api/${role}/work`,
+        url: `http://localhost:8080/api/${role}/bid`,
         headers: { Authorization: `Bearer ${token}` },
         params: { supervisor_id: id },
       });

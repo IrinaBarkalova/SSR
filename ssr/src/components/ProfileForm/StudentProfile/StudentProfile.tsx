@@ -1,24 +1,19 @@
 import React from "react";
 
-import { useReposContext } from "@App/App";
-import { StudentProfileInitialModel, StudentProfileModel } from "@models/user";
-
-const StudentProfile: React.FC = () => {
-  const repoContext = useReposContext();
-  const [student, setStudent] = React.useState<StudentProfileModel>(
-    StudentProfileInitialModel
-  );
-  React.useEffect(() => {
-    repoContext.getProfile(repoContext.token, repoContext.role).then((r) => {
-      setStudent(r.data);
-      repoContext.setId(r.data.studentID);
-    });
-  }, [repoContext]);
+import { ProfileModel } from "@models/user";
+type Props = {
+  student: ProfileModel;
+};
+const StudentProfile: React.FC<Props> = ({ student }: Props) => {
   return (
     <div>
-      <h3>
-        Вы {repoContext.role} №{student.studentID}
-      </h3>
+      <h2>
+        {student.firstName} {student.lastName}
+      </h2>
+      <h3>Почта: {student.email}</h3>
+      <h3>Кафедра: {student.department}</h3>
+      <h3>Курс: {student.year}</h3>
+      <h3>Студенческий: {student.studentCard}</h3>
     </div>
   );
 };

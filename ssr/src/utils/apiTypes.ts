@@ -1,14 +1,23 @@
-import { SupervisorProfileModel, StudentProfileModel, UserLoginRespModel } from "@models/user";
+import { StudentBidsApiModel, SupervisorBidsModel } from "@models/bid";
+import { WorksSupervisorRespApiModel } from "@models/supervisor";
+import { UserLoginRespModel, ProfileModel } from "@models/user";
+import { WorksRespModel } from "@models/works";
 
 export type ApiResp<
-  SuccessData = UserLoginRespModel | StudentProfileModel | SupervisorProfileModel,
+  SuccessData =
+    | UserLoginRespModel
+    | ProfileModel
+    | WorksRespModel
+    | WorksSupervisorRespApiModel
+    | SupervisorBidsModel
+    | StudentBidsApiModel,
   ErrorData = any
 > =
   | {
       success: true;
-      data: SuccessData;
+      data?: SuccessData;
     }
   | {
       success: false;
-      data: ErrorData;
+      data?: ErrorData;
     };
