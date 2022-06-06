@@ -10,7 +10,12 @@ const SupervisorWorks: React.FC<Props> = ({ works }: Props) => {
   return (
     <div>
       {works.works.map((w) => (
-        <Card title={`${w.kind}`} bordered={true} style={{ width: "auto" }}>
+        <Card
+          key={w.id}
+          title={`${w.kind}`}
+          bordered={true}
+          style={{ width: "auto" }}
+        >
           <p>Предмет: {w.subject}</p>
           <p>Описание работы: {w.description}</p>
 

@@ -11,11 +11,13 @@ const ProfileForm: React.FC = () => {
   const [profile, setProfile] =
     React.useState<ProfileModel>(ProfileInitialModel);
   React.useEffect(() => {
-    repoContext.getProfile(repoContext.token, repoContext.role).then((r) => {
-      setProfile(r.data);
+    if (repoContext.role && repoContext.token) {
+      repoContext.getProfile(repoContext.token, repoContext.role).then((r) => {
+        setProfile(r.data);
 
-      repoContext.setId(r.data.studentID || r.data.supervisorID);
-    });
+        repoContext.setId(r.data.studentID || r.data.supervisorID);
+      });
+    }
   }, [repoContext]);
   return (
     <div className="ProfileForm__full">

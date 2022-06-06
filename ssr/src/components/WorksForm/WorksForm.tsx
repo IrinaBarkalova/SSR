@@ -21,8 +21,12 @@ const WorksForm: React.FC = () => {
   }, [repoContext]);
   return (
     <div className="">
-      {repoContext.role === "student" && <StudentWorks works={works} />}
-      {repoContext.role === "supervisor" && <SupervisorWorks works={works} />}
+      {repoContext.role === "student" && (
+        <StudentWorks key="one" works={works} />
+      )}
+      {repoContext.role === "supervisor" && (
+        <SupervisorWorks key="two" works={works} />
+      )}
     </div>
   );
 };

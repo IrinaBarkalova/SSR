@@ -89,17 +89,17 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/login">
-            <LoginForm />
+            <LoginForm key="one" />
           </Route>
           <FirstPage>
             <Route exact path="/profile">
-              <ProfileForm />
+              <ProfileForm key="two" />
             </Route>
             <Route exact path="/works">
-              <WorksForm />
+              <WorksForm key="three" />
             </Route>
             <Route exact path="/bids">
-              <BidsForm />
+              <BidsForm key="four" />
             </Route>
           </FirstPage>
         </Switch>
