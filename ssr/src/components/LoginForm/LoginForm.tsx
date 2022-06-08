@@ -30,7 +30,7 @@ const LoginForm: React.FC = () => {
     <div className="LoginForm">
       login: <input value={repoContext.login} onChange={onChangeLogin} />
       <br />
-      passw:{" "}
+      password:{" "}
       <input
         type="password"
         value={repoContext.password}
