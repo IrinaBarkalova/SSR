@@ -39,7 +39,7 @@ const FirstPage: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
       {props.children}
       {!repoContext.token && (
         <div>
-          <h1>Приложение предназначено для преподавлете и студентов.</h1>
+          <h1>Приложение предназначено для преподавателям и студентов.</h1>
           <h2>Пройдите авторизацию перед началом!</h2>
         </div>
       )}
