@@ -11,10 +11,12 @@ const StudentBids: React.FC<Props> = ({ bids }: Props) => {
 
   const handleClick = React.useCallback(
     (bidId: number) => {
-      repoContext.ssr(bidId, repoContext.id, repoContext.token).then((r) =>
-        // eslint-disable-next-line no-console
-        console.log(r.success, "Подтверждение заявки")
-      );
+      repoContext
+        .ssr(bidId, repoContext.id, repoContext.loginStore.response.token)
+        .then((r) =>
+          // eslint-disable-next-line no-console
+          console.log(r.success, "Подтверждение заявки")
+        );
     },
     [repoContext]
   );

@@ -11,20 +11,30 @@ const SupervisorBidTile: React.FC<Props> = ({ bid }: Props) => {
 
   const handleClickOK = React.useCallback(() => {
     repoContext
-      .resolveBid(bid.id, true, repoContext.id, repoContext.token)
+      .resolveBid(
+        bid.id,
+        true,
+        repoContext.id,
+        repoContext.loginStore.response.token
+      )
       .then((r) =>
         // eslint-disable-next-line no-console
         console.log(r.success, "bid_accept")
       );
-  }, [repoContext]);
+  }, [repoContext, bid.id]);
   const handleClickNot = React.useCallback(() => {
     repoContext
-      .resolveBid(bid.id, false, repoContext.id, repoContext.token)
+      .resolveBid(
+        bid.id,
+        false,
+        repoContext.id,
+        repoContext.loginStore.response.token
+      )
       .then((r) =>
         // eslint-disable-next-line no-console
         console.log(r.success, "bid_accept")
       );
-  }, [repoContext]);
+  }, [repoContext, bid.id]);
   return (
     <div>
       у вас есть студент {bid.student.lastName} с работой {bid.work.name}

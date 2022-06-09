@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ProfileModel } from "@models/user";
+import { ProfileModel } from "@mobxStore/ProfileStore/types";
 type Props = {
   supervisor: ProfileModel;
 };

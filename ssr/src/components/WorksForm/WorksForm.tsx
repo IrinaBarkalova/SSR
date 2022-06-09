@@ -14,17 +14,21 @@ const WorksForm: React.FC = () => {
   const [works, setWorks] = React.useState<WorksRespModel>(WorksInitialModel);
   React.useEffect(() => {
     repoContext
-      .getWorks(repoContext.token, repoContext.id, repoContext.role)
+      .getWorks(
+        repoContext.loginStore.response.token,
+        repoContext.id,
+        repoContext.loginStore.response.role
+      )
       .then((r) => {
         setWorks(normalizeWorksResp(r.data));
       });
   }, [repoContext]);
   return (
     <div className="">
-      {repoContext.role === "student" && (
+      {repoContext.loginStore.response.role === "student" && (
         <StudentWorks key="one" works={works} />
       )}
-      {repoContext.role === "supervisor" && (
+      {repoContext.loginStore.response.role === "supervisor" && (
         <SupervisorWorks key="two" works={works} />
       )}
     </div>

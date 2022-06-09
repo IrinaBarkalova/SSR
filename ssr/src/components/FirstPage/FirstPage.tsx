@@ -21,7 +21,7 @@ const FirstPage: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
           <Menu.Item key="one" icon={<AppstoreOutlined />}>
             <Link to={`/login`}>Авторизация</Link>
           </Menu.Item>
-          {repoContext.token && (
+          {repoContext.loginStore.response.token && (
             <Menu>
               <Menu.Item key="two" icon={<AppstoreOutlined />}>
                 <Link to={`/profile`}>Мой профиль</Link>
@@ -37,9 +37,9 @@ const FirstPage: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
         </Menu.SubMenu>
       </Menu>
       {props.children}
-      {!repoContext.token && (
+      {!repoContext.loginStore.response.token && (
         <div>
-          <h1>Приложение предназначено для преподавлете и студентов.</h1>
+          <h1>Приложение предназначено для преподавателей и студентов.</h1>
           <h2>Пройдите авторизацию перед началом!</h2>
         </div>
       )}

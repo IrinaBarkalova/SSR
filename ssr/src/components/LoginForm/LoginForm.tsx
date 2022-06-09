@@ -6,35 +6,29 @@ import { Link } from "react-router-dom";
 
 const LoginForm: React.FC = () => {
   const repoContext = useReposContext();
-  const onChangeLogin = React.useCallback(
-    (event) => {
-      repoContext.setLogin(event.target.value);
-    },
-    [repoContext]
-  );
-  const onChangePswd = React.useCallback(
-    (event) => {
-      repoContext.setPswd(event.target.value);
-    },
-    [repoContext]
-  );
   const handleClick = React.useCallback(() => {
-    repoContext
-      .getToken(repoContext.login, repoContext.password)
-      .then((result) => {
-        repoContext.setToken(result.data.token);
-        repoContext.setRole(result.data.role);
+    if (repoContext.loginStore.login && repoContext.loginStore.password) {
+      repoContext.loginStore.getToken({
+        login: repoContext.loginStore.login,
+        password: repoContext.loginStore.password,
       });
+    }
+    // eslint-disable-next-line no-console
+    console.log(repoContext.loginStore.response.token, "TOKEN");
   }, [repoContext]);
   return (
     <div className="LoginForm">
-      login: <input value={repoContext.login} onChange={onChangeLogin} />
+      login:{" "}
+      <input
+        defaultValue={repoContext.loginStore.login}
+        onChange={repoContext.loginStore.handleChangeLogin}
+      />
       <br />
       password:{" "}
       <input
         type="password"
-        value={repoContext.password}
-        onChange={onChangePswd}
+        defaultValue={repoContext.loginStore.password}
+        onChange={repoContext.loginStore.handleChangePassword}
       />
       <br />
       <Link to={`/profile`}>
@@ -44,4 +38,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default React.memo(LoginForm);

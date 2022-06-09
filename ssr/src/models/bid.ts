@@ -1,4 +1,4 @@
-import { normalizeProfile, ProfileModel } from "@models/user";
+import { normalizeProfile, ProfileModel } from "@mobxStore/ProfileStore/types";
 
 export type SubjectWorkModel = {
   department: string;

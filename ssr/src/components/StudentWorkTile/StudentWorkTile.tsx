@@ -20,20 +20,27 @@ const StudentWorkTile: React.FC<Props> = ({ work }: Props) => {
   const handleClick = React.useCallback(
     (sup_id: number) => {
       repoContext
-        .postStudentBid(repoContext.id, sup_id, work.id, repoContext.token)
+        .postStudentBid(
+          repoContext.id,
+          sup_id,
+          work.id,
+          repoContext.loginStore.response.token
+        )
         .then((r) =>
           // eslint-disable-next-line no-console
           console.log(r.success)
         );
     },
-    [repoContext]
+    [repoContext, work.id]
   );
 
   React.useEffect(() => {
-    repoContext.getSupervisorForWork(repoContext.token, work.id).then((r) => {
-      setSupervisors(normalizeSypervisorForWorksResp(r.data));
-    });
-  }, [repoContext]);
+    repoContext
+      .getSupervisorForWork(repoContext.loginStore.response.token, work.id)
+      .then((r) => {
+        setSupervisors(normalizeSypervisorForWorksResp(r.data));
+      });
+  }, [repoContext, work.id]);
   return (
     <div>
       у тебя есть {work.kind} по {work.subject}

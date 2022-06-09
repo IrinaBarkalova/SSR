@@ -19,9 +19,13 @@ const BidsForm: React.FC = () => {
     React.useState<SupervisorBidsModel>(InitialBids);
   React.useEffect(() => {
     repoContext
-      .getBids(repoContext.token, repoContext.id, repoContext.role)
+      .getBids(
+        repoContext.loginStore.response.token,
+        repoContext.id,
+        repoContext.loginStore.response.role
+      )
       .then((r) => {
-        if (repoContext.role === "student") {
+        if (repoContext.loginStore.response.role === "student") {
           setbidsStudent(normalizeStudentBidsResp(r.data));
         } else {
           setbidsSupervisor(normalizeSupervisorBidsResp(r.data));
@@ -30,8 +34,10 @@ const BidsForm: React.FC = () => {
   }, [repoContext]);
   return (
     <div className="">
-      {repoContext.role === "student" && <StudentBids bids={bidsStudent} />}
-      {repoContext.role === "supervisor" && (
+      {repoContext.loginStore.response.role === "student" && (
+        <StudentBids bids={bidsStudent} />
+      )}
+      {repoContext.loginStore.response.role === "supervisor" && (
         <SupervisorBids bids={bidsSupervisor} />
       )}
     </div>

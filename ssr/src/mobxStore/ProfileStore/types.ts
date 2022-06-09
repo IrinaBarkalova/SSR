@@ -1,14 +1,11 @@
-export type UserLoginModel = {
-  login: string;
-  password: string;
-};
-export type UserLoginRespModel = {
-  email: string;
-  role: string;
+export type getProfileParams = {
   token: string;
+  role: string;
 };
-
-export const ProfileInitialModel = {
+export interface IProfileStore {
+  getProfile(params: getProfileParams): Promise<void>;
+}
+export const ProfileInitialModel = () => ({
   avatarUrl: "",
   department: "",
   email: "",
@@ -20,8 +17,7 @@ export const ProfileInitialModel = {
   about: "",
   birthdate: "",
   supervisorID: 0,
-};
-
+});
 export type ProfileModel = {
   avatarUrl?: string;
   department: string;
