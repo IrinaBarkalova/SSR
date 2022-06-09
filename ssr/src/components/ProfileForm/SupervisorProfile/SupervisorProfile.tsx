@@ -16,4 +16,4 @@ const SupervisorProfile: React.FC<Props> = ({ supervisor }: Props) => {
   );
 };
 
-export default SupervisorProfile;
+export default React.memo(SupervisorProfile);

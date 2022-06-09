@@ -18,4 +18,4 @@ const StudentProfile: React.FC<Props> = ({ student }: Props) => {
   );
 };
 
-export default StudentProfile;
+export default React.memo(StudentProfile);

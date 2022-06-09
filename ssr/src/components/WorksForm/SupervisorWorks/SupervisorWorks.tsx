@@ -26,4 +26,4 @@ const SupervisorWorks: React.FC<Props> = ({ works }: Props) => {
   );
 };
 
-export default SupervisorWorks;
+export default React.memo(SupervisorWorks);

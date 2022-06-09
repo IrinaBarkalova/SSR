@@ -31,4 +31,4 @@ const WorksForm: React.FC = () => {
   );
 };
 
-export default WorksForm;
+export default React.memo(WorksForm);

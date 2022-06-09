@@ -46,4 +46,4 @@ const FirstPage: React.FC<Props> = (props: React.PropsWithChildren<Props>) => {
     </div>
   );
 };
-export default FirstPage;
+export default React.memo(FirstPage);

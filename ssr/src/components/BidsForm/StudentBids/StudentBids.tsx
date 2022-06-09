@@ -43,4 +43,4 @@ const StudentBids: React.FC<Props> = ({ bids }: Props) => {
   );
 };
 
-export default StudentBids;
+export default React.memo(StudentBids);

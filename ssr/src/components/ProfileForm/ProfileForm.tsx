@@ -29,4 +29,4 @@ const ProfileForm: React.FC = () => {
   );
 };
 
-export default ProfileForm;
+export default React.memo(ProfileForm);

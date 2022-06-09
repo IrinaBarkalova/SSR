@@ -19,4 +19,4 @@ const SupervisorBids: React.FC<Props> = ({ bids }: Props) => {
   );
 };
 
-export default SupervisorBids;
+export default React.memo(SupervisorBids);

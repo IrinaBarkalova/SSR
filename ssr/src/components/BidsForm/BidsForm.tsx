@@ -38,4 +38,4 @@ const BidsForm: React.FC = () => {
   );
 };
 
-export default BidsForm;
+export default React.memo(BidsForm);

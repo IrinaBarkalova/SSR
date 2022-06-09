@@ -26,14 +26,14 @@ const StudentWorkTile: React.FC<Props> = ({ work }: Props) => {
           console.log(r.success)
         );
     },
-    [repoContext]
+    [repoContext, work.id]
   );
 
   React.useEffect(() => {
     repoContext.getSupervisorForWork(repoContext.token, work.id).then((r) => {
       setSupervisors(normalizeSypervisorForWorksResp(r.data));
     });
-  }, [repoContext]);
+  }, [repoContext, work.id]);
   return (
     <div>
       у тебя есть {work.kind} по {work.subject}
@@ -61,4 +61,4 @@ const StudentWorkTile: React.FC<Props> = ({ work }: Props) => {
   );
 };
 
-export default StudentWorkTile;
+export default React.memo(StudentWorkTile);

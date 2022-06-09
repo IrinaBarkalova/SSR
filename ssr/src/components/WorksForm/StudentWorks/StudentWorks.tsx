@@ -21,4 +21,4 @@ const StudentWorks: React.FC<Props> = ({ works }: Props) => {
   );
 };
 
-export default StudentWorks;
+export default React.memo(StudentWorks);
